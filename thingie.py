@@ -26,8 +26,8 @@ class SmallBoard:
         self.size = n
 
     ### Board info funcs
-    def get_empty_squares(self):
-        pass
+    def empty_squares(self):
+        return [(i,j) for i in range(self.size) for j in range(self.size) if self.squares[i][j] == EMPTYCHAR]
 
     def rows(self):
         return self.squares
