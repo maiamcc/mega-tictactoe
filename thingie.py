@@ -1,12 +1,33 @@
+EMPTYCHAR = 0
+
 class SmallBoard:
     def __init__(self, n=3):
-        self.squares = [[0 for _ in range(n)] for _ in range(n)]
+        self.squares = [[EMPTYCHAR for _ in range(n)] for _ in range(n)]
         self.winner = None
         self.size = n
 
-    def check_if_won(self):
-        # can check if just a particular move wins?
+    ### Board info funcs
+    def get_empty_squares(self):
         pass
+
+    def rows(self):
+        return self.squares
+
+    def cols(self):
+        return [[self.squares[i][j] for i in range(self.size)] for j in range(self.size)]
+
+    def diags(self):
+        return [[self.squares[i][i] for i in range(self.size)],
+                [self.squares[i][self.size - i - 1] for i in range(self.size)]]
+
+    def check_if_won(self):
+        """Check if board is won. DOOOOOCCCCSTRIIIINNNNNGGGG."""
+        all_triplets = self.rows() + self.cols() + self.diags()
+        for triplet in all_triplets:
+            if len(set(triplet)) == 1 and triplet[0] != EMPTYCHAR:
+                # A WINNAR IS YOU
+                return True
+        return False
 
     def move(self, token, row, col):
         if not (0 <= row <= self.size and 0 <= col <= self.size):
@@ -14,18 +35,15 @@ class SmallBoard:
             raise Exception("Invalid position")
 
         # NOTE: this will have to change if we ever go back to empty squares as 'none'
-        if self.squares[row][col]:
+        if self.squares[row][col] != EMPTYCHAR:
             raise Exception("Square is taken, illegal move")
 
         self.squares[row][col] = token
 
-    def get_empty_squares(self):
-        pass
-
     def __str__(self):
         strings = []
         for row in self.squares:
-            strings.append("  ".join([str(i) for i in row]))
+            strings.append("  ".join([str(n) for n in row]))
 
         return "\n".join(strings)
 
