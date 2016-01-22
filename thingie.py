@@ -1,5 +1,24 @@
 EMPTYCHAR = 0
 
+# If you're reading this code, burn it now.
+# For your protection, we have provided a safety pig:
+#                           _
+#  _._ _..._ .-',     _.._(`))
+# '-. `     '  /-._.-'    ',/
+#    )         \            '.
+#   / _    _    |             \
+#  |  a    a    /              |
+#  \   .-.                     ;
+#   '-('' ).-'       ,'       ;
+#      '-;           |      .'
+#         \           \    /
+#         | 7  .__  _.-\   \
+#         | |  |  ``/  /`  /
+#    jgs /,_|  |   /,_/   /
+#           /,_/      '`-'
+# Love,
+#       Maia and Rose
+
 class SmallBoard:
     def __init__(self, n=3):
         self.squares = [[EMPTYCHAR for _ in range(n)] for _ in range(n)]
